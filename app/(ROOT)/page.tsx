@@ -28,7 +28,7 @@ export default async function Home({
     _updatedAt: post._updatedAt,
     _rev: post._rev,
     title: post.title ?? "Untitled Startup",
-    slug: post.slug,
+    slug: post.slug ?? undefined, // Handle null slug and convert to undefined
     views: post.views ?? 0,
     description: post.description ?? "No description provided",
     category: post.category ?? "Uncategorized",
