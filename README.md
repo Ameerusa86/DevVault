@@ -40,17 +40,17 @@ Ensure you have the following installed:
 
 2. Install dependencies:
 
-npm install
-yarn install
-pnpm install
-bun install
+-npm install
+-yarn install
+-pnpm install
+-bun install
 
 3. Run the development server:
 
-npm run dev
-yarn dev
-pnpm dev
-bun dev
+-npm run dev
+-yarn dev
+-pnpm dev
+-bun dev
 
 4. Open your browser and navigate to: http://localhost:3000
 
