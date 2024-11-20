@@ -51,10 +51,10 @@ bun install
 3. Run the development server:
 
 ```bash
--npm run dev
--yarn dev
--pnpm dev
--bun dev
+npm run dev
+yarn dev
+pnpm dev
+bun dev
 ```
 
 4. Open your browser and navigate to:
