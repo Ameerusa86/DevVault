@@ -1,8 +1,7 @@
 import { defineQuery } from "next-sanity";
 
 // Fetch all startups, optionally filter by search term
-export const STARTUPS_QUERY =
-  defineQuery(`*[_type == "startup" && defined(slug.current)] | order(_createdAt desc) {
+export const STARTUPS_QUERY = `*[_type == "startup" && defined(slug.current)] | order(_createdAt desc) {
   _id,
   _type,
   _createdAt,
@@ -20,7 +19,7 @@ export const STARTUPS_QUERY =
     image,
     bio
   }
-}`);
+}`;
 
 // Fetch a specific startup by its ID
 export const STARTUP_BY_ID_QUERY =

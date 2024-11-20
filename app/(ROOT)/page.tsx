@@ -3,6 +3,7 @@ import StartupCard from "@/components/StartupCard";
 import { STARTUPS_QUERY } from "@/sanity/lib/queries";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { auth } from "@/auth";
+import { StartupTypeCard } from "@/interfaces";
 
 export default async function Home({
   searchParams,
@@ -15,7 +16,32 @@ export default async function Home({
   const session = await auth();
   console.log(session);
 
-  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params });
+  const { data: rawPosts } = await sanityFetch({
+    query: STARTUPS_QUERY,
+    params,
+  });
+
+  const posts: StartupTypeCard[] = rawPosts.map((post) => ({
+    _id: post._id,
+    _type: "startup",
+    _createdAt: post._createdAt,
+    _updatedAt: post._updatedAt,
+    _rev: post._rev,
+    title: post.title ?? "Untitled Startup",
+    slug: post.slug ?? undefined,
+    views: post.views ?? 0,
+    description: post.description ?? "No description available",
+    category: post.category ?? "Uncategorized",
+    image: post.image ?? "/placeholder.jpg",
+    author: post.author
+      ? {
+          _id: post.author._id,
+          name: post.author.name ?? "Unknown Author",
+          image: post.author.image ?? "/default-user.jpg",
+          bio: post.author.bio ?? "",
+        }
+      : null,
+  }));
 
   return (
     <>
