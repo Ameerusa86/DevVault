@@ -20,31 +20,10 @@ export default async function Home({
     params,
   });
 
-  interface Author {
-    _id: string;
-    name: string;
-    image: string;
-    bio: string;
-  }
-
-  interface RawPost {
-    _id: string;
-    _type: string;
-    _createdAt: string;
-    _updatedAt: string;
-    _rev: string;
-    title?: string;
-    slug: string;
-    views?: number;
-    description?: string;
-    category?: string;
-    image?: string;
-    author?: Author;
-  }
-
-  const posts: StartupTypeCard[] = rawPosts.map((post: RawPost) => ({
+  // Transform raw data to match the StartupTypeCard type
+  const posts: StartupTypeCard[] = rawPosts.map((post) => ({
     _id: post._id,
-    _type: post._type,
+    _type: "startup", // Explicitly set _type to "startup"
     _createdAt: post._createdAt,
     _updatedAt: post._updatedAt,
     _rev: post._rev,
