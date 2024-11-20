@@ -41,21 +41,15 @@ Ensure you have the following installed:
 2. Install dependencies:
 
 npm install
-# or
 yarn install
-# or
 pnpm install
-# or
 bun install
 
 3. Run the development server:
 
 npm run dev
-# or
 yarn dev
-# or
 pnpm dev
-# or
 bun dev
 
 4. Open your browser and navigate to: http://localhost:3000
