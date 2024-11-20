@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { formSchema } from "@/lib/validation";
 import { createPitch } from "@/lib/actions";
+import Image from "next/image";
 
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -167,7 +168,7 @@ const StartupForm = () => {
           <UploadCloud className="text-primary size-6" />
         </div>
         {previewUrl && (
-          <img
+          <Image
             src={previewUrl}
             alt="Image preview"
             className="mt-4 rounded-md w-32 h-32 object-cover"

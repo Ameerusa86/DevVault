@@ -2,27 +2,25 @@ import { defineQuery } from "next-sanity";
 
 // Fetch all startups, optionally filter by search term
 export const STARTUPS_QUERY =
-  defineQuery(`*[_type == "startup" && defined(slug.current) && 
-    ($search == null || title match $search || category match $search || author->name match $search)] 
-  | order(_createdAt desc) {
+  defineQuery(`*[_type == "startup" && defined(slug.current)] | order(_createdAt desc) {
+  _id,
+  _type,
+  _createdAt,
+  _updatedAt,
+  _rev,
+  title,
+  slug,
+  views,
+  description,
+  category,
+  image,
+  author -> {
     _id,
-    _createdAt,
-    _type,
-    _updatedAt,
-    _rev,
-    title,
-    slug,
-    views,
-    description,
-    category,
+    name,
     image,
-    author -> {
-      _id,
-      name,
-      image,
-      bio
-    }
-  }`);
+    bio
+  }
+}`);
 
 // Fetch a specific startup by its ID
 export const STARTUP_BY_ID_QUERY =

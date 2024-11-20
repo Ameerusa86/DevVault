@@ -13,13 +13,56 @@ export default async function Home({
   const params = { search: query || null };
 
   const session = await auth();
-
   console.log(session);
 
-  const { data: posts }: { data: StartupTypeCard[] } = await sanityFetch({
+  const { data: rawPosts } = await sanityFetch({
     query: STARTUPS_QUERY,
     params,
   });
+
+  interface Author {
+    _id: string;
+    name: string;
+    image: string;
+    bio: string;
+  }
+
+  interface RawPost {
+    _id: string;
+    _type: string;
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    slug: string;
+    views?: number;
+    description?: string;
+    category?: string;
+    image?: string;
+    author?: Author;
+  }
+
+  const posts: StartupTypeCard[] = rawPosts.map((post: RawPost) => ({
+    _id: post._id,
+    _type: post._type,
+    _createdAt: post._createdAt,
+    _updatedAt: post._updatedAt,
+    _rev: post._rev,
+    title: post.title ?? "Untitled Startup",
+    slug: post.slug,
+    views: post.views ?? 0,
+    description: post.description ?? "No description provided",
+    category: post.category ?? "Uncategorized",
+    image: post.image ?? "/path/to/default/image.jpg",
+    author: post.author
+      ? {
+          _id: post.author._id,
+          name: post.author.name ?? "Unknown Author",
+          image: post.author.image ?? "/path/to/default/author.jpg",
+          bio: post.author.bio ?? "",
+        }
+      : undefined,
+  }));
 
   return (
     <>
@@ -28,11 +71,9 @@ export default async function Home({
           Your Startup Hub
           <br /> Connect, Collaborate, Succeed
         </h1>
-
         <p className="sub-heading !max-w-3xl">
-          Turn Ideas into Action: Compete and Get Discovered{" "}
+          Turn Ideas into Action: Compete and Get Discovered
         </p>
-
         <SearchForm query={query} />
       </section>
 
@@ -40,12 +81,9 @@ export default async function Home({
         <p className="text-30-semibold">
           {query ? `Search results for "${query}"` : "All Startups"}
         </p>
-
         <ul className="mt-7 card_grid">
-          {posts?.length > 0 ? (
-            posts.map((post: StartupTypeCard) => (
-              <StartupCard key={post?._id} post={post} />
-            ))
+          {posts.length > 0 ? (
+            posts.map((post) => <StartupCard key={post._id} post={post} />)
           ) : (
             <p className="no-results">No startups found</p>
           )}
