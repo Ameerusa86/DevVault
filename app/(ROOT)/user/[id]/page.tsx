@@ -4,7 +4,6 @@ import { AUTHOR_BY_ID_QUERY } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Suspense } from "react";
-import { StartupCardSkeleton } from "@/components/StartupCard";
 import UserStartups from "@/components/UserStartups";
 
 export const experimental_ppr = true;
@@ -27,8 +26,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </div>
 
           <Image
-            src={user.image}
-            alt={user.name}
+            src={user.image || "/default-image.png"}
+            alt={user.name || "Default Name"}
             width={220}
             height={220}
             className="profile_image"
@@ -45,7 +44,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             {session?.user?.id === id ? "Your" : "All"} Startups
           </p>
           <ul className="card_grid-sm">
-            <Suspense fallback={<StartupCardSkeleton />}>
+            <Suspense fallback={<p>Loading ...</p>}>
               <UserStartups id={id} />
             </Suspense>
           </ul>

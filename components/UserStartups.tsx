@@ -1,10 +1,18 @@
 import React from "react";
 import { client } from "@/sanity/lib/client";
-import StartupCard, { StartupTypeCard } from "@/components/StartupCard";
 import { STARTUPS_BY_AUTHOR_QUERY } from "@/sanity/lib/queries";
+import { StartupTypeCard } from "@/interfaces";
+import StartupCard from "./StartupCard";
 
 const UserStartups = async ({ id }: { id: string }) => {
-  const startups = await client.fetch(STARTUPS_BY_AUTHOR_QUERY, { id });
+  const rawStartups = await client.fetch(STARTUPS_BY_AUTHOR_QUERY, { id });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const startups = rawStartups.map((startup: any) => ({
+    ...startup,
+    _type: "startup",
+    _updatedAt: startup._updatedAt ?? new Date().toISOString(),
+    _rev: startup._rev ?? "",
+  }));
 
   return (
     <>
@@ -18,4 +26,5 @@ const UserStartups = async ({ id }: { id: string }) => {
     </>
   );
 };
+
 export default UserStartups;

@@ -3,7 +3,7 @@ import { EyeIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { StartupTypeCard } from "@/interfaces";
+import { StartupTypeCard } from "@/interfaces"; // Import the type here
 
 const StartupCard = ({ post }: { post: StartupTypeCard }) => {
   const {
