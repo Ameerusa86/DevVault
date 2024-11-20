@@ -37,6 +37,7 @@ Ensure you have the following installed:
    ```bash
    git clone https://github.com/Ameerusa86/DevVault.git
    cd DevVault
+   ```
 
 2. Install dependencies:
 
@@ -45,7 +46,7 @@ npm install
 yarn install
 pnpm install
 bun install
-
+```
 
 3. Run the development server:
 
@@ -54,6 +55,7 @@ bun install
 -yarn dev
 -pnpm dev
 -bun dev
+```
 
 4. Open your browser and navigate to:
 
