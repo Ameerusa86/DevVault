@@ -1,5 +1,7 @@
 # 🚀 **DevVault**
 
+![alt text](image.png)
+
 This project is built using the latest technologies to create a robust, scalable, and visually appealing platform. It leverages Next.js 15, React 19, Shadcn, Tailwind CSS, and Sanity to deliver a seamless user experience.
 
 ---
