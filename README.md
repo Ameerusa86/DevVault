@@ -57,19 +57,3 @@ pnpm dev
 bun dev
 ```
 
-4. Open your browser and navigate to:
-
-```bash
-http://localhost:3000
-
-## File Structure
-├── app/
-│   ├── layout.tsx   // Global layout for the app
-│   ├── page.tsx     // Main page of the application
-│   ├── api/         // API routes for server-side logic
-├── components/      // Reusable React components
-├── styles/          // Tailwind CSS configuration
-├── sanity/          // Sanity schema and client configuration
-├── public/          // Static assets like images
-├── types/           // TypeScript types and interfaces
-└── README.md        // Project documentation

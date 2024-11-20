@@ -5,17 +5,23 @@ export const STARTUPS_QUERY =
   defineQuery(`*[_type == "startup" && defined(slug.current) && 
     ($search == null || title match $search || category match $search || author->name match $search)] 
   | order(_createdAt desc) {
-    _id, 
-    title, 
-    slug,
+    _id,
     _createdAt,
-    author -> {
-      _id, name, image, bio
-    }, 
+    _type,
+    _updatedAt,
+    _rev,
+    title,
+    slug,
     views,
     description,
     category,
     image,
+    author -> {
+      _id,
+      name,
+      image,
+      bio
+    }
   }`);
 
 // Fetch a specific startup by its ID
