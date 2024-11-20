@@ -40,19 +40,25 @@ Ensure you have the following installed:
 
 2. Install dependencies:
 
--npm install
--yarn install
--pnpm install
--bun install
+```bash
+npm install
+yarn install
+pnpm install
+bun install
+
 
 3. Run the development server:
 
+```bash
 -npm run dev
 -yarn dev
 -pnpm dev
 -bun dev
 
-4. Open your browser and navigate to: http://localhost:3000
+4. Open your browser and navigate to:
+
+```bash
+http://localhost:3000
 
 ## File Structure
 ├── app/
